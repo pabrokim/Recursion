@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recursion Assignment</title>
+</head>
+<body>
+    <script>
+
+        function fibs(num){
+            let fibSeq = [0, 1];
+            for(let i = 2; i < num; i++){
+               fibSeq[i] = fibSeq[i-1] + fibSeq[i-2];
+            }
+            return fibSeq;
+
+        }
+        function fibsRec(n) {
+            if (n <= 0) {
+                return [];
+            } else if (n === 1) {
+                return [0];
+            } else if (n === 2) {
+                return [0, 1];
+            } else {
+                const fibSeq = fibsRec(n - 1);
+                fibSeq.push(fibSeq[fibSeq.length - 1] + fibSeq[fibSeq.length - 2]);
+                return fibSeq;
+            }
+            }
+            //get nth value recursively
+
+            function getNum(n){
+                if(n<2){
+                    return n
+                }else{
+                    return (getNum(n-1) + getNum(n-2));
+                }
+            }
+
+        
+        const fibonacciNumbers = fibsRec(n);
+        console.log(fibonacciNumbers);
+
+        let toSort = [2, 7, 6, 5,1];
+
+        function sortArray(arr){
+            let sortedArr = [];
+            for(let i=0; i < arr.length; i++){
+                let smallestNum = arr[0];
+                if(arr[i] < smallestNum){
+                arr[i] = smallestNum;
+                sortedArr.push(arr[i]);
+                }
+            }
+            
+            return sortedArr;
+
+        }
+        
+        //mergesort
+
+        function mergeSort(arr, l, h) {
+            if (l < h) {
+                const mid = Math.floor((l + h) / 2);
+                mergeSort(arr, l, mid);
+                mergeSort(arr, mid + 1, h);
+                merge(arr, l, mid, h);
+            }
+        }
+
+        function merge(arr, l, mid, h) {
+            let i = l;
+            let j = mid + 1;
+            let k = 0;
+            const c = new Array(h - l + 1);
+
+            while (i <= mid && j <= h) {
+                if (arr[i] < arr[j]) {
+                    c[k] = arr[i];
+                    k++;
+                    i++;
+                } else {
+                    c[k] = arr[j];
+                    k++;
+                    j++;
+                }
+            }
+
+            while (i <= mid) {
+                c[k] = arr[i];
+                k++;
+                i++;
+            }
+
+            while (j <= h) {
+                c[k] = arr[j];
+                k++;
+                j++;
+            }
+
+            for (let x = 0; x < c.length; x++) {
+                arr[l + x] = c[x];
+            }
+        }
+
+
+  
+    </script>
+</body>
+</html>
